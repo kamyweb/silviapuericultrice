@@ -22,9 +22,25 @@
 		<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
 		<link rel="manifest" href="icons/site.webmanifest">
 
-		<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+		<!-- connect to domain of font files -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+		<!-- optionally increase loading priority -->
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900">
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Berkshire+Swash:100,200,300,400,500,600,700,800,90">
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900">
+
+		<!-- async CSS -->
+		<link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900">
+		<link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css?family=Berkshire+Swash:100,200,300,400,500,600,700,800,90">
+		<link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900">
+		<!-- no-JS fallback -->
+		<noscript>
+			<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+		</noscript>
 
 
 		<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
