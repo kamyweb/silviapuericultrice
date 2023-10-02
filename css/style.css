@@ -41,6 +41,7 @@
   box-sizing: border-box; }
 
 html {
+  scroll-behavior: smooth;
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -7546,7 +7547,7 @@ h1, h2, h3, h4, h5,
         .hero-wrap .slider-text .breadcrumbs span a {
           color: #000; }
     .hero-wrap .slider-text h1 {
-      font-size: 80px;
+      font-size: 65px;
       color: #000;
       font-weight: 200; }
       .hero-wrap .slider-text h1 span {
