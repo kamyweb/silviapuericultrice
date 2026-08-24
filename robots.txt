@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: css/ fonts/ images/ js/
 
 Sitemap: https://silviapuericultricetorino.it/sitemap.xml
