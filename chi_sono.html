@@ -17,6 +17,29 @@
 		<meta name="twitter:description" content="Silvia Rivela: mamma, operatrice socio-sanitaria e puericultrice a Torino, consulente di Casa Maternità Prima Luce e socia fondatrice di Casa Chicchi."/>
 		<meta name="twitter:image" content="https://silviapuericultricetorino.it/images/preview_social.jpg"/>
 
+		<style>
+			/* on small screens the desktop overlap offsets of .chi-sono-photos-accent
+			   push it past the viewport edge and get clipped; contain it instead */
+			@media (max-width: 767px) {
+				.chi-sono-photos {
+					max-width: 240px !important;
+					margin: 0 auto 40px !important;
+				}
+				.chi-sono-photos-main {
+					left: 0 !important;
+				}
+				.chi-sono-photos-accent {
+					position: static !important;
+					display: block !important;
+					width: 50% !important;
+					height: auto !important;
+					aspect-ratio: 3 / 4 !important;
+					margin: -15% 0 0 auto !important;
+					border-width: 5px !important;
+				}
+			}
+		</style>
+
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -185,7 +208,7 @@
 					<h2 class="mb-1">Chi sono</h2>
 				</div>
 			</div>
-			<div class="row align-items-center">
+			<div class="row align-items-start">
 				<div class="col-md-6 ftco-animate order-2 order-md-1">
 					<p>Sono una mamma di due bambini, il maggiore nato a febbraio 2018, il minore nato ad agosto 2021.</p>
 					<p>Sono una puericultrice diplomata: un'operatrice socio-sanitaria specializzata nell'accompagnamento alla nascita e nell'assistenza alla prima infanzia. Solitamente sostengo i neo genitori relativamente alle preoccupazioni o difficoltà che emergono nella cura e accudimento del loro bambin@, con consulenze (a domicilio o in studio) che riguardano la sua crescita dal punto di vista psicologico, motorio, ludico, e sanitario nei limiti della fisiologia. Ma sono anche una figura su cui potersi appoggiare per prevenire o superare le difficoltà di adattamento alla nuova vita genitoriale e continuare il proprio cammino di famiglia in serenità, attraverso un'assistenza a casa vostra continuativa nel tempo. Per imparare a conoscere e riconoscere il vostr@ bambin@ e il suo linguaggio, per riprendere fiato lasciando vostr@ figli@ alle cure di una persona fidata e preparata, che ama il suo lavoro e lo fa con cuore e passione.</p>
@@ -197,8 +220,8 @@
 				<div class="col-md-1 order-1 order-md-2"></div>
 				<div class="col-md-5 ftco-animate order-1 order-md-2 mb-5 mb-md-0">
 					<div style="position: relative; max-width: 380px; margin: 0 auto 130px;">
-						<img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v2/images/chisono-2.png" width="489" height="607" alt="Silvia Rivela con il primogenito" style="width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,.18); border: 6px solid #fff;">
-						<img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v2/images/chisono-1.png" width="441" height="963" alt="Silvia Rivela con il secondogenito" style="position: absolute; bottom: -119px; left: -123px; width: 248px; height: 392px;object-fit: cover; object-position: top center; border: 6px solid #fff; border-radius: 12px; box-shadow: 0 12px 24px rgba(0,0,0,.22); transform: rotate(-7deg);">
+						<img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v2/images/chisono-2.png" width="489" height="607" alt="Silvia Rivela con il primogenito" style="position: relative;width: 100%;height: auto;left: 82px;display: block;border-radius: 16px;box-shadow: 0 20px 40px rgba(0,0,0,.18);border: 6px solid #fff;">
+						<img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v2/images/chisono-1.png" width="441" height="963" alt="Silvia Rivela con il secondogenito" style="position: absolute;bottom: -119px;left: -65px;width: 248px;height: 392px;object-fit: cover;object-position: top center;border: 6px solid #fff;border-radius: 12px;box-shadow: 0 12px 24px rgba(0,0,0,.22);transform: rotate(-7deg);">
 					</div>
 				</div>
 			</div>
