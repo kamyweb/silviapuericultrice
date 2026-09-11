@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# 1) Aggiorna <lastmod> in sitemap.xml (data odierna) per le pagine HTML
+#    modificate nel commit.
+# 2) Se il commit tocca asset in images/, icons/, js/ o css/, calcola il
+#    prossimo tag incrementale (v1, v2, v3, ...) e sostituisce in tutte le
+#    pagine HTML della root il tag della CDN jsDelivr
+#    (https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@vN) con quello
+#    nuovo. Il tag git vero e proprio viene creato dall'hook post-commit,
+#    perché non può esistere prima che il commit sia stato effettivamente
+#    creato.
+#
+# Installazione: copiare questo file in .git/hooks/pre-commit (insieme a
+# post-commit) e renderlo eseguibile (chmod +x), oppure lanciare:
+#   git config core.hooksPath githooks
+
+set -euo pipefail
+
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+cd "$ROOT_DIR"
+
+SITEMAP="$ROOT_DIR/sitemap.xml"
+BASE_URL="https://silviapuericultricetorino.it"
+CDN_REPO="kamyweb/silviapuericultrice"
+TODAY="$(date +%Y-%m-%d)"
+TAG_MARKER="$ROOT_DIR/.git/.pending-cdn-tag"
+
+# Ripulisce eventuali marker rimasti da un commit precedente interrotto
+rm -f "$TAG_MARKER"
+
+### 1) sitemap.xml ###
+if [ -f "$SITEMAP" ]; then
+	mapfile -t CHANGED_HTML < <(git diff --cached --name-only --diff-filter=ACM -- '*.html' | grep -v '^template/' || true)
+
+	if [ ${#CHANGED_HTML[@]} -gt 0 ]; then
+		for file in "${CHANGED_HTML[@]}"; do
+			filename="$(basename "$file")"
+			if [ "$filename" = "index.html" ]; then
+				loc="$BASE_URL/"
+			else
+				loc="$BASE_URL/$filename"
+			fi
+
+			python3 - "$SITEMAP" "$loc" "$TODAY" <<'PYEOF'
+import re
+import sys
+
+sitemap_path, loc, today = sys.argv[1], sys.argv[2], sys.argv[3]
+
+with open(sitemap_path, encoding="utf-8") as f:
+	content = f.read()
+
+pattern = re.compile(r'(<loc>' + re.escape(loc) + r'</loc>\s*<lastmod>)[^<]*(</lastmod>)')
+new_content, count = pattern.subn(r'\g<1>' + today + r'\g<2>', content)
+
+if count:
+	with open(sitemap_path, "w", encoding="utf-8") as f:
+		f.write(new_content)
+PYEOF
+		done
+
+		if ! git diff --quiet -- "$SITEMAP"; then
+			git add "$SITEMAP"
+			echo "pre-commit: sitemap.xml aggiornato con la data odierna ($TODAY)"
+		fi
+	fi
+fi
+
+### 2) versione CDN jsDelivr ###
+mapfile -t CHANGED_ASSETS < <(git diff --cached --name-only -- images/ icons/ js/ css/ || true)
+
+if [ ${#CHANGED_ASSETS[@]} -gt 0 ]; then
+	# Versione più alta tra i tag git esistenti (v1, v2, ...)
+	tags_max=0
+	while IFS= read -r t; do
+		[ -z "$t" ] && continue
+		n="${t#v}"
+		[ "$n" -gt "$tags_max" ] 2>/dev/null && tags_max="$n"
+	done < <(git tag -l 'v[0-9]*' | grep -E '^v[0-9]+$' || true)
+
+	# Versione più alta già referenziata nelle pagine HTML (rete di sicurezza
+	# nel caso un tag sia stato cancellato ma l'URL sia già stato bumpato)
+	html_max=0
+	while IFS= read -r n; do
+		[ -z "$n" ] && continue
+		[ "$n" -gt "$html_max" ] 2>/dev/null && html_max="$n"
+	done < <(grep -ohE "${CDN_REPO}@v[0-9]+" -- *.html 2>/dev/null | grep -oE '[0-9]+$' || true)
+
+	current=$tags_max
+	[ "$html_max" -gt "$current" ] && current=$html_max
+	next=$((current + 1))
+	new_tag="v${next}"
+
+	sed -i -E "s#(${CDN_REPO})@v[0-9]+#\1@${new_tag}#g" -- *.html
+
+	if ! git diff --quiet -- '*.html'; then
+		git add -- *.html
+		echo "$new_tag" > "$TAG_MARKER"
+		echo "pre-commit: asset modificati, URL CDN aggiornati a @${new_tag} in tutte le pagine"
+		echo "pre-commit: il tag git '${new_tag}' verrà creato dopo il commit (vedi hook post-commit)"
+	fi
+fi
+
+exit 0

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Completa il lavoro dell'hook pre-commit: se questo commit ha bumpato la
+# versione della CDN jsDelivr (asset modificati in images/icons/js/css),
+# crea il tag git corrispondente sul commit appena creato.
+#
+# Installazione: copiare questo file in .git/hooks/post-commit (insieme a
+# pre-commit) e renderlo eseguibile (chmod +x), oppure lanciare:
+#   git config core.hooksPath githooks
+
+set -euo pipefail
+
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+TAG_MARKER="$ROOT_DIR/.git/.pending-cdn-tag"
+
+[ -f "$TAG_MARKER" ] || exit 0
+
+new_tag="$(cat "$TAG_MARKER")"
+rm -f "$TAG_MARKER"
+
+if [ -n "$new_tag" ] && ! git rev-parse -q --verify "refs/tags/$new_tag" >/dev/null; then
+	git tag "$new_tag"
+	echo "post-commit: creato tag '${new_tag}' su $(git rev-parse --short HEAD)"
+	echo "post-commit: ricordati di eseguire 'git push origin ${new_tag}' per pubblicarlo sulla CDN"
+fi
+
+exit 0
