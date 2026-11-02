@@ -7333,6 +7333,9 @@ h1, h2, h3, h4, h5,
   @media (max-width: 991.98px) {
     .ftco-navbar-light .navbar-nav {
       padding-bottom: 10px; } }
+  @media (max-width: 991.98px) {
+    #ftco-nav .navbar-nav {
+      text-align: right; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
     font-size: 14px;
     padding-top: 1.5rem;
