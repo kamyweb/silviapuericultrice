@@ -8039,6 +8039,63 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden; }
 
+/* the only animate.css effects used by the site (see js/main.js) */
+.ftco-animated {
+  animation-duration: .5s;
+  animation-fill-mode: both; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95); }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1); } }
+
+.fadeIn {
+  animation-name: fadeIn; }
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(-50px, 0, 0); }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: none; } }
+
+.fadeInLeft {
+  animation-name: fadeInLeft; }
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(50px, 0, 0); }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: none; } }
+
+.fadeInRight {
+  animation-name: fadeInRight; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 40px, 0); }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: none; } }
+
+.fadeInUp {
+  animation-name: fadeInUp; }
+
 .bg-primary {
   background: #d291bc !important; }
 
