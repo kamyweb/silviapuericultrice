@@ -311,12 +311,14 @@
 				display: flex;
 				flex-direction: column;
 			}
-			.corsi .block-7 > div:last-child {
+			.corsi .block-7 > div:last-child,
+			.corsi-luoghi .block-7 > div:last-child {
 				flex: 1;
 				display: flex;
 				flex-direction: column;
 			}
-			.corsi .block-7 .btn-primary {
+			.corsi .block-7 .btn-primary,
+			.corsi-luoghi .block-7 .btn-primary.d-block {
 				margin-top: auto;
 			}
 			@media (min-width: 768px) {
@@ -334,6 +336,15 @@
 				aspect-ratio: 3 / 2;
 				object-fit: cover;
 				object-position: center;
+			}
+			@media (min-width: 992px) {
+				.corsi-luoghi .block-6 img {
+					display: block;
+					width: 100%;
+					height: 140px;
+					object-fit: contain;
+					object-position: center;
+				}
 			}
 			.pricing-text .detail-toggle {
 				background: none;
@@ -373,6 +384,18 @@
 				font-size: .9em;
 				line-height: 1.5;
 				text-align: left;
+			}
+		</style>
+		<style>
+			/* mobile: meno spazio vuoto sopra il titolo della pagina */
+			@media (max-width: 767.98px) {
+				nav + section.ftco-section {
+					padding-top: 2em;
+				}
+				nav + section.ftco-section > .container > .row:first-child {
+					margin-bottom: 2em !important;
+					padding-bottom: 0 !important;
+				}
 			}
 		</style>
 		<script defer src="https://cdn.counter.dev/script.js" data-id="77d4621f-682c-48c0-b3dd-3515668d7d59" data-utcoffset="1"></script>
@@ -435,7 +458,7 @@
 					<div class="block-7">
 						<div class="text-center" style="background: #fff;">
 							<h2 class="heading">Primi giochi insieme</h2>
-							<div class="block-6"><img src="/images/primi-giochi-insieme.jpg" alt="Primi giochi insieme con Silvia Rivela puericultrice a Torino" style="width: 100%"></div>
+							<div class="block-6"><img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v9/images/primi-giochi-insieme.jpg" alt="Primi giochi insieme con Silvia Rivela puericultrice a Torino" style="width: 100%"></div>
 						</div>
 						<div style="margin-top: 15px;">
 							<span class="excerpt d-block">Uno spazio di gioco e scoperta dedicato ai bambini dai 5 ai 12 mesi, insieme ai loro genitori, per sperimentare, conoscere gli altri e vivere le prime esperienze di gruppo. Un tempo lento e accogliente, in cui stare e osservare i bambini e le bambine che esplorano con i cinque sensi, condividere con altri genitori pensieri ed esperienze sulla crescita, avere lo sguardo e il parere di più professioniste del materno infantile perchè è un percorso gestito da 4 figure che collaborano e si alternano.</span>
@@ -508,7 +531,9 @@
 							<div class="block-6"><a href="https://casaprimaluce.it/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v9/images/LOGO_DEF_PRIMA_LUCE_257x100.png" alt="Casa maternità prima luce" style="width: 100%"></a></div>
 						</div>
 						<div style="margin-top: 15px;">
-							<a href="https://casaprimaluce.it/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">sito</a> <a href="https://www.facebook.com/SpazioOstetrico/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">fb</a> <a href="https://instagram.com/casamaternitaprimaluce" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">ig</a>
+							<div class="mt-auto text-center">
+								<a href="https://casaprimaluce.it/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">sito</a> <a href="https://www.facebook.com/SpazioOstetrico/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">fb</a> <a href="https://instagram.com/casamaternitaprimaluce" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">ig</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -519,7 +544,9 @@
 							<div class="block-6"><a href="https://www.casachicchi.it/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v9/images/logo-colore-casa-chicchi.svg" alt="Casa chiccchi" style="width: 100%"></a></div>
 						</div>
 						<div style="margin-top: 15px;">
-							<a href="https://www.casachicchi.it/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">sito</a> <a href="https://www.facebook.com/casachicchi/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">fb</a> <a href="https://www.instagram.com/casachicchi/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">ig</a>
+							<div class="mt-auto text-center">
+								<a href="https://www.casachicchi.it/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">sito</a> <a href="https://www.facebook.com/casachicchi/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">fb</a> <a href="https://www.instagram.com/casachicchi/" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">ig</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -530,7 +557,9 @@
 							<div class="block-6"><a href="https://www.instagram.com/versoilpartoeoltre" target="_blank"><img src="https://cdn.jsdelivr.net/gh/kamyweb/silviapuericultrice@v9/images/332103247_441848798096859_5882802257858597736_n.jpg" alt="Verso il parto...e oltre" style="width: 100%"></a></div>
 						</div>
 						<div style="margin-top: 15px;">
-							<a href="https://www.facebook.com/profile.php?id=100090359716513" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">fb</a> <a href="https://www.instagram.com/versoilpartoeoltre" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">ig</a>
+							<div class="mt-auto text-center">
+								<a href="https://www.facebook.com/profile.php?id=100090359716513" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">fb</a> <a href="https://www.instagram.com/versoilpartoeoltre" target="_blank" class="btn btn-primary" style="position: relative; width: auto;">ig</a>
+							</div>
 						</div>
 					</div>
 				</div>
